@@ -39,6 +39,7 @@ export default function Post ({
 
         <figure>
           <Image
+            key={eyecatch.url}
             src={eyecatch.url}
             alt=''
             layout='responsive'
@@ -102,7 +103,7 @@ export async function getStaticProps (context) {
       categories: post.categories,
       description: description,
       prevPost: prevPost,
-      nextPost: nextPost,
+      nextPost: nextPost
     }
   }
 }
