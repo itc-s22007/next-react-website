@@ -5,13 +5,13 @@ export default function Nav () {
     <nav>
       <ul className={styles.list}>
         <li>
-          <Link href='/'>Home</Link>
+          <Link href='/' legacyBehavior>Home</Link>
         </li>
         <li>
-          <Link href='/about'>About</Link>
+          <Link href='/about' legacyBehavior>About</Link>
         </li>
         <li>
-          <Link href='/blog'>Blog</Link>
+          <Link href='/blog' legacyBehavior>Blog</Link>
         </li>
       </ul>
     </nav>
