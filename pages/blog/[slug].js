@@ -1,18 +1,17 @@
-import { getPostBySlug, getAllSlugs } from 'lib/api'
+
 import Container from 'components/container'
-import PostHeader from 'components/post-header'
-import PostBody from 'components/post-body'
+import { getPostBySlug, getAllSlugs } from 'lib/api'
 import { extractText } from 'lib/extract-text'
 import { prevNextPost } from 'lib/prev-next-post'
 import Meta from 'components/meta'
+import PostHeader from 'components/post-header'
+import PostBody from 'components/post-body'
 import { TwoColumn, TwoColumnMain, TwoColumnSidebar } from 'components/two-column'
 import ConvertBody from 'components/convert-body'
 import PostCategories from 'components/post-categories'
 import Pagination from 'components/pagination'
 import Image from 'next/image'
-
 import { getPlaiceholder } from 'plaiceholder'
-
 import { eyecatchLocal } from 'lib/constants'
 
 export default function Post ({
@@ -42,7 +41,11 @@ export default function Post ({
             key={eyecatch.url}
             src={eyecatch.url}
             alt=''
-            layout='responsive'
+            style={{
+              width: '100%',
+              height: 'auto'
+            }}
+            // layout='responsive'
             width={eyecatch.width}
             height={eyecatch.height}
             sizes='(min-width: 1152px) 1152px, 100vw'
@@ -64,7 +67,7 @@ export default function Post ({
         <Pagination
           prevText={prevPost.title}
           prevUrl={`/blog/${prevPost.slug}`}
-          nextText={nextPost.title}
+          nextTet={nextPost.title}
           nextUrl={`/blog/${nextPost.slug}`}
         />
       </article>
@@ -73,6 +76,7 @@ export default function Post ({
 }
 export async function getStaticPaths () {
   const allSlugs = await getAllSlugs()
+
   return {
     paths: allSlugs.map(({ slug }) => `/blog/${slug}`),
     fallback: false
@@ -103,7 +107,7 @@ export async function getStaticProps (context) {
       categories: post.categories,
       description: description,
       prevPost: prevPost,
-      nextPost: nextPost,
+      nextPost: nextPost
     }
   }
 }
